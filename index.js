@@ -2,12 +2,16 @@ const express = require('express');
 const blogRoutes = require('./routes/blog-routes');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const methodOverride = require('method-override');
 
 dotenv.config({ path: __dirname + '/.env' });
 const app = express();
 
+app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(blogRoutes);
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
+
 
 const db = process.env['MONGO_URL'];
 mongoose
@@ -18,4 +22,3 @@ mongoose
 app.listen(3000, () => {
     console.log('Running server on port 3000');
 })
-
