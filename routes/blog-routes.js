@@ -1,10 +1,10 @@
 const express = require('express');
-const { getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost } = require('../controllers/blog-controller');
+const {getHome, getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost } = require('../controllers/blog-controller');
 
 const router = express.Router();
 
-router.get('/', getBlog);
-
+router.get('/', getHome);
+router.get('/posts', getBlog);
 router.get('/post/:id/edit', editPostForm);
 router.put('/post/:id', editPost);
 router.get('/makepost', makePostForm);

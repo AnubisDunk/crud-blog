@@ -1,26 +1,2 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Blog</h1>
-    <div>
-        <a href="/makepost">Add Post</a>
-    </div>
-    <ul>
-        <% for (let post of posts) {%>
-            <li>
-                <a href="/post/<%= post._id %>">
-                    <%= `${post.title} from ${post.author}` %>
-                </a>
-            </li>
-            <% } %>
-    </ul>
-</body>
-
-</html>
+<% layout('layouts/boilerplate') %>
+<h1>Welcome, stranger</h1>

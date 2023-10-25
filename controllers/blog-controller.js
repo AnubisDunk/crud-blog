@@ -1,7 +1,10 @@
 const Post = require('../models/post');
 const getBlog = async (req, res) => {
     const posts = await Post.find({});
-    res.render('home', { posts });
+    res.render('posts', { posts });
+}
+const getHome = (req, res) => {
+    res.render('home');
 }
 
 const getPost = async (req, res) => {
@@ -30,12 +33,12 @@ const editPostForm = async (req, res) => {
 
 const deletePost = async (req, res) => {
     await Post.findByIdAndRemove(req.params.id);
-    res.redirect('/');
+    res.redirect('/posts');
 }
 
 
 const seedDB = async (req, res) => {
-    await Post.deleteMany({});
+    // await Post.deleteMany({});
     for (let i = 0; i < 5; i++) {
         const post = new Post({ title: `Post ${i}`, author: `Johhny ${i}`, body: `This is a story about ${i} and repeat ${Math.floor(Math.random() * 100) + 90} ` });
         await post.save();
@@ -43,5 +46,5 @@ const seedDB = async (req, res) => {
 }
 
 module.exports = {
-    getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost
+    getHome, getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost
 }

@@ -1,28 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<% layout('layouts/boilerplate') %>
+<h1>Edit <%= post._id %>
+</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit</title>
-</head>
-
-<body>
-    <h1>Edit <%= post._id %>
-    </h1>
-
-    <form action="/post/<%= post._id %>?_method=PUT" method="post">
-        <div>
-            <label for="title">Post title:</label>
-            <input type="text" id="title" name="post[title]" value="<%= post.title %>">
-        </div>
-        <div>
-            <label for="body">Post body:</label>
-            <input type="text" id="title" name="post[body]" value="<%= post.body %>">
-        </div>
-        <button>Edit post</button>
-        <a href="/post/<%= post._id %>">Back</a>
-    </form>
-</body>
-
-</html>
+<form action="/post/<%= post._id %>?_method=PUT" method="post">
+    <div>
+        <label for="title">Post title:</label>
+        <input type="text" id="title" name="post[title]" value="<%= post.title %>">
+    </div>
+    <div>
+        <label for="body">Post body:</label>
+        <input type="text" id="title" name="post[body]" value="<%= post.body %>">
+    </div>
+    <button>Edit post</button>
+</form>

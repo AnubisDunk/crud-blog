@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+<h1>Blog</h1>
+
+<ul>
+    <% for (let post of posts) {%>
+        <li>
+            <h1>
+                <a href="/post/<%= post._id %>">
+                <%= `${post.title}` %>
+            </a> 
+            </h1>
+           <p>from <%= `${post.author}` %></p>
+        </li>
+        <% } %>
+</ul>
