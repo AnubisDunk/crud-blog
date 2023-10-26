@@ -1,19 +1,32 @@
 <% layout('layouts/boilerplate') %>
-<h1>New Post</h1>
-
-<form action="/makepost" method="post">
-    <div>
-        <label for="title">Post title:</label>
-        <input type="text" id="title" name="post[title]">
+    <h1>New Post</h1>
+    <div class="row">
+        <div class="col-6">
+            <form action="/makepost" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title:</label>
+                    <input class="form-control" type="text" id="title" name="post[title]">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="body">Text:</label>
+                    <textarea class="form-control" type="text" id="body" name="post[body]"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image:</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                        <input type="text" class="form-control" id="image" name="post[image]">
+                    </div>
+                </div>
+                <!-- temp -->
+                <div class="mb-3">
+                    <label class="form-label" for="author">Author:</label>
+                    <input class="form-control" type="text" id="author" name="post[author]">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary">New post</button>
+                </div>
+                <a href="/posts">Back</a>
+            </form>
+        </div>
     </div>
-    <div>
-        <label for="body">Post text:</label>
-        <input type="text" id="body" name="post[body]">
-    </div>
-    <div>
-        <label for="author">Post author:</label>
-        <input type="text" id="author" name="post[author]">
-    </div>
-    <button>New post</button>
-</form>
-<a href="/posts">Back</a>

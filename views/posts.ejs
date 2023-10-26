@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
     <h1>Blog</h1>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
         <% for (let post of posts) {%>
             <div class="col">
                 <div class="card mb-3">
@@ -9,15 +9,14 @@
                         <h5 class="card-title">
                             <%= post.title%>
                         </h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                            additional
-                            content. This content is a little bit longer.</p>
+                        <p class="card-text"><%= post.body %></p>
                         <a href="/post/<%= post._id %>" class="btn btn-primary">Read <%= post.title %></a>
                     </div>
                     <div class="card-footer">
-                        <small class="text-body-secondary">Last updated 3 mins ago</small>
+                        <small class="text-body-secondary"><%= `${post.updatedAt.toLocaleDateString('en-us', { weekday:"long", month:"long", day:"numeric", year:"numeric"})}`%></small>
+                        <!-- <small class="text-body-secondary"><%= `${post.updatedAt.toLocaleString('en-US', {hour12: false,})}`%></small> -->
                     </div>
                 </div>
             </div>
             <% } %>
-    </div>
+    </div> 
