@@ -3,21 +3,29 @@
     </h1>
     <div class="row">
         <div class="col-6">
-            <form action="/post/<%= post._id %>?_method=PUT" method="post">
+            <form action="/post/<%= post._id %>?_method=PUT" method="post" novalidate class="needs-validation">
                 <div class="mb-3">
                     <label class="form-label" for="title">Title:</label>
-                    <input class="form-control" type="text" id="title" name="post[title]" value="<%= post.title %>">
+                    <input class="form-control" type="text" id="title" name="post[title]" value="<%= post.title %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="body">Text:</label>
-                    <textarea class="form-control" type="text" id="body" name="post[body]"
-                        value="<%= post.body %>"></textarea>
+                    <textarea class="form-control" type="text" id="body" name="post[body]" required><%= post.body %></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                 </div>
                 <div class="mb-3">
                     <label for="image" class="form-label">Image:</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-                        <input type="text" class="form-control" id="image" name="post[image]" value="<%= post.image %>">
+                        <input type="text" class="form-control" id="image" name="post[image]" value="<%= post.image %>" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3">
@@ -26,3 +34,23 @@
             </form>
         </div>
     </div>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
