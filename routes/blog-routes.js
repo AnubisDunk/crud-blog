@@ -1,5 +1,5 @@
 const express = require('express');
-const {getHome, getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost } = require('../controllers/blog-controller');
+const { getHome, getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost } = require('../controllers/blog-controller');
 
 const router = express.Router();
 
@@ -12,5 +12,6 @@ router.post('/makepost', makePost);
 router.get('/post/:id', getPost);
 router.delete('/post/:id', deletePost);
 router.get('/seedDB', seedDB);
+
 
 module.exports = router;

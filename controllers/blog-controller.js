@@ -1,42 +1,46 @@
+const catchAsync = require('../utils/catchAsync');
 const Post = require('../models/post');
-const getBlog = async (req, res) => {
+
+const getBlog = catchAsync(async (req, res) => {
     const posts = await Post.find({});
     res.render('posts', { posts });
-}
+})
+
 const getHome = (req, res) => {
     res.render('home');
 }
 
-const getPost = async (req, res) => {
+const getPost = catchAsync(async (req, res) => {
     const post = await Post.findById(req.params.id);
     res.render('details', { post })
-}
+})
+
 const makePostForm = (req, res) => {
     res.render('new');
 }
-const makePost = async (req, res) => {
+
+const makePost = catchAsync(async (req, res) => {
     const img = { image: "https://source.unsplash.com/collection/9564863" }
     const post = new Post(req.body.post);
     await post.save();
     res.redirect(`/post/${post._id}`);
-}
+})
 
-const editPost = async (req, res) => {
+const editPost = catchAsync(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findByIdAndUpdate(id, { ...req.body.post });
     res.redirect(`/post/${post._id}`);
-}
+})
 
-const editPostForm = async (req, res) => {
+const editPostForm = catchAsync(async (req, res) => {
     const post = await Post.findById(req.params.id);
     res.render('edit', { post });
-}
+})
 
-const deletePost = async (req, res) => {
+const deletePost = catchAsync(async (req, res) => {
     await Post.findByIdAndRemove(req.params.id);
     res.redirect('/posts');
-}
-
+})
 
 const seedDB = async (req, res) => {
     // await Post.deleteMany({});
