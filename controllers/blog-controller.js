@@ -1,4 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
+const validatePost = require('../utils/validatePost')
+const { postSchema } = require('../utils/schemas')
+const ExpressError = require('../utils/ExpressError');
 const Post = require('../models/post');
 
 const getBlog = catchAsync(async (req, res) => {
@@ -20,7 +23,14 @@ const makePostForm = (req, res) => {
 }
 
 const makePost = catchAsync(async (req, res) => {
-    const img = { image: "https://source.unsplash.com/collection/9564863" }
+    const {error} = postSchema.validate(req.body);
+
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new ExpressError(msg, 400)
+    } else {
+        next()
+    }
     const post = new Post(req.body.post);
     await post.save();
     res.redirect(`/post/${post._id}`);

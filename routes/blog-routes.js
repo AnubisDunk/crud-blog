@@ -1,5 +1,6 @@
 const express = require('express');
 const { getHome, getBlog, makePost, makePostForm, seedDB, getPost, editPost, editPostForm, deletePost } = require('../controllers/blog-controller');
+const { validatePost } = require('../utils/validatePost');
 
 const router = express.Router();
 
