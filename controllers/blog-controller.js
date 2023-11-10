@@ -28,8 +28,6 @@ const makePost = catchAsync(async (req, res) => {
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new ExpressError(msg, 400)
-    } else {
-        next()
     }
     const post = new Post(req.body.post);
     await post.save();
